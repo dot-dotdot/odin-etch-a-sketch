@@ -18,3 +18,8 @@ html {
     border: 1px solid black;
     flex-wrap: wrap;
 }
+
+.grid-cell {
+    border: 1px solid black;
+    box-sizing: border-box;
+}
