@@ -12,8 +12,8 @@ html {
 }
 
 .grid-container {
-    width: 50vw;
-    height: 50vw;
+    width: 600px;
+    height: 600px;
     display: flex;
     border: 1px solid black;
     flex-wrap: wrap;
@@ -21,5 +21,4 @@ html {
 
 .grid-cell {
     border: 1px solid black;
-    box-sizing: border-box;
 }

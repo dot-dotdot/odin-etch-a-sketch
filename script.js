@@ -11,12 +11,9 @@ function fillGrid(sideLength) {
     for (let i = 1; i <= cellsTotal; i++) {
         const div = document.createElement("div");
         div.classList.add("grid-cell");
-        setCellDimensions(div);
+        div.style.cssText = `width: calc(100% / ${sideLength});
+                            height: calc(100% / ${sideLength})`;
         gridContainer.appendChild(div);
     }
 }
 
-function setCellDimensions(cell) {
-    cell.style.width = gridContainer.clientWidth / sideLength + "px";
-    cell.style.height = cell.style.width;
-}
