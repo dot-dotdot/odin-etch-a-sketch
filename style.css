@@ -6,6 +6,15 @@ html {
     box-sizing: inherit;
 }
 
-.grid-container {
+.square-container {
     display: flex;
+    justify-content: center;
+}
+
+.grid-container {
+    width: 50vw;
+    height: 50vw;
+    display: flex;
+    border: 1px solid black;
+    flex-wrap: wrap;
 }
