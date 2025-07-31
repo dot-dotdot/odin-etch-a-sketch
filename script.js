@@ -15,6 +15,7 @@ const clearButton = document.querySelector(".clear-button");
 const drawButton = document.querySelector(".draw-button");
 const eraseButton = document.querySelector(".erase-button");
 const randomButton = document.querySelector(".random-button");
+const gridSizeSlider = document.querySelector(".slider");
 
 fillGrid(sideLength);
 
@@ -23,6 +24,11 @@ clearButton.addEventListener("click", () => resetGrid(gridContainer));
 drawButton.addEventListener("click", () => currentMode = DEFAULT);
 eraseButton.addEventListener("click", () => currentMode = ERASE);
 randomButton.addEventListener("click", () => currentMode = RANDOM);
+gridSizeSlider.addEventListener("input", (event) => {
+    sideLength = event.target.value;
+    resetGrid(gridContainer);
+    fillGrid(sideLength);
+})
 
 function processEvent(event) {
     if (currentMode === DEFAULT) {
@@ -81,7 +87,8 @@ function changeOpacity(element) {
 }
 
 function resetGrid(grid) {
-    while (grid.firstChild) {
+    let total = sideLength * sideLength;
+    for (let i = 1; i <= total; i++) {
         grid.removeChild(grid.firstChild);
     }
     
