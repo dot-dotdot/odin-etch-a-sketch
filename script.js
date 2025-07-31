@@ -5,6 +5,7 @@ const ERASE= 2;
 const RANDOM= 3;
 
 let sideLength = 16;
+let cellsTotal = sideLength * sideLength
 let currentMode = DEFAULT;
 let currentColor = "#000000";
 let eraseOn = false;
@@ -24,9 +25,13 @@ clearButton.addEventListener("click", () => resetGrid(gridContainer));
 drawButton.addEventListener("click", () => currentMode = DEFAULT);
 eraseButton.addEventListener("click", () => currentMode = ERASE);
 randomButton.addEventListener("click", () => currentMode = RANDOM);
-gridSizeSlider.addEventListener("input", (event) => {
-    sideLength = event.target.value;
+
+// TODO: fix slider behavior.
+// Currently slider causes off event listener area overflow. 
+gridSizeSlider.addEventListener("input", () => {
+    console.log(sideLength);
     resetGrid(gridContainer);
+    sideLength = gridSizeSlider.value;
     fillGrid(sideLength);
 })
 
@@ -61,8 +66,6 @@ function handleMousoverRandom(event) {
 }
 
 function fillGrid(sideLength) {
-    let cellsTotal = sideLength * sideLength
-
     for (let i = 1; i <= cellsTotal; i++) {
         const cell = document.createElement("div");
         cell.classList.add("grid-cell");
@@ -87,8 +90,7 @@ function changeOpacity(element) {
 }
 
 function resetGrid(grid) {
-    let total = sideLength * sideLength;
-    for (let i = 1; i <= total; i++) {
+    for (let i = 1; i <= cellsTotal; i++) {
         grid.removeChild(grid.firstChild);
     }
     
