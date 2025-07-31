@@ -3,26 +3,14 @@
 let sideLength = 16;
 let currentColor = "#000000";
 let eraseOn = false;
+let randomOn = false;
 
 const gridContainer = document.querySelector(".grid-container");
 const clearButton = document.querySelector(".clear-button");
 const eraseButton = document.querySelector(".erase-button");
+const randomButton = document.querySelector(".random-button");
 
 fillGrid(sideLength);
-
-function fillGrid(sideLength) {
-    let cellsTotal = sideLength * sideLength
-
-    for (let i = 1; i <= cellsTotal; i++) {
-        const cell = document.createElement("div");
-        cell.classList.add("grid-cell");
-        cell.setAttribute("data-cellcolor", "");
-        cell.style.cssText = `width: calc(100% / ${sideLength});
-                            height: calc(100% / ${sideLength})`;
-        setColor(cell, currentColor);
-        gridContainer.appendChild(cell);
-    }
-}
 
 gridContainer.addEventListener("mouseover", handleMousoverDraw);
 clearButton.addEventListener("click", () => resetGrid(gridContainer));
@@ -44,6 +32,27 @@ function handleMousoverDraw(event) {
 function handleMousoverErase(event) {
     if (event.target.dataset.cellcolor !== undefined) {
         event.target.style.opacity = 0;
+    }
+}
+
+function handleMousoverRandom(event) {
+    if (event.target.dataset.cellcolor !== undefined) {
+        let randomColor = `rgb(${random(255)} ${random(255)} ${random(255)})`;
+        setColor(event.target, randomColor);
+    }
+}
+
+function fillGrid(sideLength) {
+    let cellsTotal = sideLength * sideLength
+
+    for (let i = 1; i <= cellsTotal; i++) {
+        const cell = document.createElement("div");
+        cell.classList.add("grid-cell");
+        cell.setAttribute("data-cellcolor", "");
+        cell.style.cssText = `width: calc(100% / ${sideLength});
+                            height: calc(100% / ${sideLength})`;
+        setColor(cell, currentColor);
+        gridContainer.appendChild(cell);
     }
 }
 
