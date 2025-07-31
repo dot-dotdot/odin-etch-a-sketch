@@ -1,27 +1,38 @@
 "use strict";
 
+const DEFAULT = 1;
+const ERASE= 2;
+const RANDOM= 3;
+
 let sideLength = 16;
+let currentMode = DEFAULT;
 let currentColor = "#000000";
 let eraseOn = false;
 let randomOn = false;
 
 const gridContainer = document.querySelector(".grid-container");
 const clearButton = document.querySelector(".clear-button");
+const drawButton = document.querySelector(".draw-button");
 const eraseButton = document.querySelector(".erase-button");
 const randomButton = document.querySelector(".random-button");
 
 fillGrid(sideLength);
 
-gridContainer.addEventListener("mouseover", handleMousoverDraw);
+gridContainer.addEventListener("mouseover", processEvent);
 clearButton.addEventListener("click", () => resetGrid(gridContainer));
-eraseButton.addEventListener("click", () => {
-    eraseOn = !eraseOn;
+drawButton.addEventListener("click", () => currentMode = DEFAULT);
+eraseButton.addEventListener("click", () => currentMode = ERASE);
+randomButton.addEventListener("click", () => currentMode = RANDOM);
 
-    gridContainer.removeEventListener("mouseover", eraseOn ? 
-        handleMousoverDraw : handleMousoverErase);
-    gridContainer.addEventListener("mouseover", eraseOn ? 
-        handleMousoverErase : handleMousoverDraw); 
-});
+function processEvent(event) {
+    if (currentMode === DEFAULT) {
+        handleMousoverDraw(event);
+    } else if (currentMode === ERASE) {
+        handleMousoverErase(event);
+    } else if (currentMode === RANDOM) {
+        handleMousoverRandom(event);
+    }
+}
 
 function handleMousoverDraw(event) {
     if (event.target.dataset.cellcolor !== undefined) {
@@ -38,6 +49,7 @@ function handleMousoverErase(event) {
 function handleMousoverRandom(event) {
     if (event.target.dataset.cellcolor !== undefined) {
         let randomColor = `rgb(${random(255)} ${random(255)} ${random(255)})`;
+        event.target.style.opacity = random(100) + "%";
         setColor(event.target, randomColor);
     }
 }
