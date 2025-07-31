@@ -1,9 +1,12 @@
 "use strict";
 
 let sideLength = 16;
+let currentColor = "#000000";
+let eraseOn = false;
 
 const gridContainer = document.querySelector(".grid-container");
 const clearButton = document.querySelector(".clear-button");
+const eraseButton = document.querySelector(".erase-button");
 
 fillGrid(sideLength);
 
@@ -16,18 +19,33 @@ function fillGrid(sideLength) {
         cell.setAttribute("data-cellcolor", "");
         cell.style.cssText = `width: calc(100% / ${sideLength});
                             height: calc(100% / ${sideLength})`;
-        setColor(cell, "black");
+        setColor(cell, currentColor);
         gridContainer.appendChild(cell);
     }
 }
 
-gridContainer.addEventListener("mouseover", (event) => {
+gridContainer.addEventListener("mouseover", handleMousoverDraw);
+clearButton.addEventListener("click", () => resetGrid(gridContainer));
+eraseButton.addEventListener("click", () => {
+    eraseOn = !eraseOn;
+
+    gridContainer.removeEventListener("mouseover", eraseOn ? 
+        handleMousoverDraw : handleMousoverErase);
+    gridContainer.addEventListener("mouseover", eraseOn ? 
+        handleMousoverErase : handleMousoverDraw); 
+});
+
+function handleMousoverDraw(event) {
     if (event.target.dataset.cellcolor !== undefined) {
         changeOpacity(event.target);
     }
-});
+}
 
-clearButton.addEventListener("click", () => resetGrid(gridContainer));
+function handleMousoverErase(event) {
+    if (event.target.dataset.cellcolor !== undefined) {
+        event.target.style.opacity = 0;
+    }
+}
 
 function changeOpacity(element) {
     const step = 0.1;
