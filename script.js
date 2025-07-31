@@ -88,7 +88,7 @@ function changeOpacity(element) {
 
 function resetGrid() {
     while (gridContainer.firstChild) {
-        gridContainer.removeChild(gridContainer.firstChild);
+        gridContainer.removeChild(gridContainer.lastChild);
     }
     
     fillGrid(sideLength);
