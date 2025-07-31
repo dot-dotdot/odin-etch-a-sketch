@@ -3,11 +3,13 @@
 let sideLength = 16;
 
 const gridContainer = document.querySelector(".grid-container");
+const clearButton = document.querySelector(".clear-button");
 
 fillGrid(sideLength);
 
 function fillGrid(sideLength) {
     let cellsTotal = sideLength * sideLength
+
     for (let i = 1; i <= cellsTotal; i++) {
         const div = document.createElement("div");
         div.classList.add("grid-cell");
@@ -20,10 +22,11 @@ function fillGrid(sideLength) {
 
 gridContainer.addEventListener("mouseover", (event) => {
     if (event.target.dataset.color !== undefined) {
-        event.target.classList.add("darken");
         changeOpacity(event.target);
     }
 });
+
+clearButton.addEventListener("click", () => resetGrid(gridContainer));
 
 function changeOpacity(element) {
     const step = 0.1;
@@ -36,6 +39,14 @@ function changeOpacity(element) {
     }
 
     element.style.opacity = newOpacity;
+}
+
+function resetGrid(grid) {
+    while (grid.firstChild) {
+        grid.removeChild(grid.firstChild);
+    }
+    
+    fillGrid(sideLength);
 }
 
 function random(max) {
