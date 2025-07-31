@@ -26,13 +26,10 @@ drawButton.addEventListener("click", () => currentMode = DEFAULT);
 eraseButton.addEventListener("click", () => currentMode = ERASE);
 randomButton.addEventListener("click", () => currentMode = RANDOM);
 
-// TODO: fix slider behavior.
-// Currently slider causes off event listener area overflow. 
 gridSizeSlider.addEventListener("input", () => {
-    console.log(sideLength);
-    resetGrid(gridContainer);
     sideLength = gridSizeSlider.value;
-    fillGrid(sideLength);
+    cellsTotal = sideLength * sideLength;
+    resetGrid(gridContainer);
 })
 
 function processEvent(event) {
@@ -89,9 +86,9 @@ function changeOpacity(element) {
     element.style.opacity = newOpacity;
 }
 
-function resetGrid(grid) {
-    for (let i = 1; i <= cellsTotal; i++) {
-        grid.removeChild(grid.firstChild);
+function resetGrid() {
+    while (gridContainer.firstChild) {
+        gridContainer.removeChild(gridContainer.firstChild);
     }
     
     fillGrid(sideLength);
