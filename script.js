@@ -34,27 +34,28 @@ gridSizeSlider.addEventListener("input", () => {
 
 function processEvent(event) {
     if (currentMode === DEFAULT) {
-        handleMousoverDraw(event);
+        handleMouseoverDraw(event);
     } else if (currentMode === ERASE) {
-        handleMousoverErase(event);
+        handleMouseoverErase(event);
     } else if (currentMode === RANDOM) {
-        handleMousoverRandom(event);
+        handleMouseoverRandom(event);
     }
 }
 
-function handleMousoverDraw(event) {
+function handleMouseoverDraw(event) {
     if (event.target.dataset.cellcolor !== undefined) {
+        setColor(event.target, currentColor);
         changeOpacity(event.target);
     }
 }
 
-function handleMousoverErase(event) {
+function handleMouseoverErase(event) {
     if (event.target.dataset.cellcolor !== undefined) {
         event.target.style.opacity = 0;
     }
 }
 
-function handleMousoverRandom(event) {
+function handleMouseoverRandom(event) {
     if (event.target.dataset.cellcolor !== undefined) {
         let randomColor = `rgb(${random(255)} ${random(255)} ${random(255)})`;
         event.target.style.opacity = random(100) + "%";
@@ -69,7 +70,6 @@ function fillGrid(sideLength) {
         cell.setAttribute("data-cellcolor", "");
         cell.style.cssText = `width: calc(100% / ${sideLength});
                             height: calc(100% / ${sideLength})`;
-        setColor(cell, currentColor);
         gridContainer.appendChild(cell);
     }
 }

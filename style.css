@@ -6,14 +6,27 @@ html {
     box-sizing: inherit;
 }
 
-body {
+body,
+main {
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+main {
+    width: 800px;
 }
 
 .header {
     display: flex;
     justify-content: center;
+}
+
+.toy {
+    width: 700px;
+    border: 2px solid black;
+    border-radius: 6%;
+    padding: 50px 30px 30px;
 }
 
 .square-container {
@@ -25,12 +38,18 @@ body {
     width: 600px;
     height: 600px;
     display: flex;
-    border: 1px solid black;
+    border: 2px solid black;
+    border-radius: 16px;
+    overflow: hidden;
     flex-wrap: wrap;
 }
 
 .grid-cell {
     opacity: 0;
+}
+
+.buttons {
+    padding: 10px;
 }
 
 /* Slider style - courtesy of W3Schools */
@@ -41,7 +60,7 @@ body {
 .slider {
     -webkit-appearance: none;
     appearance: none;
-    width: 10%;
+    width: 20%;
     height: 10px;
     background: #d3d3d3;
     outline: none;
