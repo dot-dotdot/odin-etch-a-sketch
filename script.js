@@ -125,3 +125,6 @@ function random(max) {
 function setColor(element, color) {
     element.style.backgroundColor = color;
 }
+
+// TODO: color picker for default draw mode - a popup panel with 16 colors,
+// accessible via a pallette button (on the panel, after the slider).
