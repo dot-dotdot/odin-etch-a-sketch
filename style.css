@@ -95,12 +95,20 @@ main {
     background-color: rgb(157, 156, 156);
 }
 
-.mode-buttons > button {
+.button {
     background-color: white;
 }
 
-.mode-buttons > button:hover {
+.button:hover {
     background-color: #d3d3d3;
+}
+
+.mode-on {
+    background-color: #21d636cf;
+}
+
+.mode-on:hover {
+    background-color: rgb(60, 167, 60);
 }
 
 label {
@@ -130,13 +138,7 @@ label {
     border: 3px solid black;
     outline: none;
     opacity: 1;
-    /* -webkit-transition: .2s;
-    transition: opacity .2s; */
 }
-
-/* .slider:hover {
-    opacity: 1;
-} */
 
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;

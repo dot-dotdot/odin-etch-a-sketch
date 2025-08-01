@@ -19,12 +19,13 @@ const randomButton = document.querySelector(".random-button");
 const gridSizeSlider = document.querySelector(".slider");
 
 fillGrid(sideLength);
+drawButton.classList.add("mode-on"); 
 
 gridContainer.addEventListener("mouseover", processEvent);
 clearButton.addEventListener("click", () => resetGrid(gridContainer));
-drawButton.addEventListener("click", () => currentMode = DEFAULT);
-eraseButton.addEventListener("click", () => currentMode = ERASE);
-randomButton.addEventListener("click", () => currentMode = RANDOM);
+drawButton.addEventListener("click", () => setMode(DEFAULT));
+eraseButton.addEventListener("click", () => setMode(ERASE));
+randomButton.addEventListener("click", () => setMode(RANDOM));
 
 gridSizeSlider.addEventListener("input", () => {
     sideLength = gridSizeSlider.value;
@@ -92,6 +93,29 @@ function resetGrid() {
     }
     
     fillGrid(sideLength);
+}
+
+function setActiveButton() {
+    const modeButtons = document.querySelectorAll(".mode-buttons > button");
+
+    for (let i = 0; i < modeButtons.length; i++) {
+        const node = modeButtons[i];
+
+        if (i + 1 === currentMode) {
+            if (!node.classList.contains("mode-on")) {
+                node.classList.add("mode-on");
+            } else {
+                continue;
+            }
+        } else {
+            node.classList.remove("mode-on");   
+        }
+    }
+}
+
+function setMode(mode) {
+    currentMode = mode;
+    setActiveButton();
 }
 
 function random(max) {
