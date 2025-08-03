@@ -22,21 +22,29 @@ const drawButton = document.querySelector(".draw-button");
 const eraseButton = document.querySelector(".erase-button");
 const randomButton = document.querySelector(".random-button");
 const gridSizeSlider = document.querySelector(".slider");
+const paletteButton = document.querySelector(".palette-button");
 
 fillGrid(sideLength);
 drawButton.classList.add("mode-on"); 
-createPallete();
+fillPalette();
 
 gridContainer.addEventListener("mouseover", processEvent);
 clearButton.addEventListener("click", () => resetGrid(gridContainer));
 drawButton.addEventListener("click", () => setMode(DEFAULT));
 eraseButton.addEventListener("click", () => setMode(ERASE));
 randomButton.addEventListener("click", () => setMode(RANDOM));
+paletteButton.addEventListener("click", () => palette.toggleAttribute("hidden"));
 
 gridSizeSlider.addEventListener("input", () => {
     sideLength = gridSizeSlider.value;
     cellsTotal = sideLength * sideLength;
     resetGrid(gridContainer);
+});
+
+palette.addEventListener("click", (event) => {
+    if (event.target.tagName === "BUTTON") {
+        currentColor = colors[event.target.getAttribute("data-color-index")];
+    }
 })
 
 function processEvent(event) {
@@ -134,13 +142,12 @@ function setColor(element, color) {
 
 // TODO: color picker for default draw mode - a popup panel with 16 colors,
 // accessible via a pallette button (on the panel, after the slider).
-const paletteButton = document.querySelector(".palette-button");
-paletteButton.addEventListener("click", () => palette.toggleAttribute("hidden"));
-
-function createPallete() {
+function fillPalette() {
     for (let i = 0; i < colors.length; i++) {
         const colorButton = document.createElement("button");
         colorButton.style.backgroundColor = colors[i];
+        colorButton.setAttribute("data-color-index", i);
+        colorButton.classList.add("color-button");
         palette.appendChild(colorButton);
     }
 }

@@ -178,12 +178,30 @@ label {
 .palette {
     display: flex;
     flex-wrap: wrap;
+    gap: 6px;
+    width: 190px;
+    justify-content: center;
+    flex: none;
     position: fixed;
     top: 50px;
     left: 100px;
-    border: 1px solid black;
+    border: 3px solid black;
+    border-radius: 16px;
     padding: 10px;
     z-index: 1000;
+}
+
+.color-button {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 3px solid black;
+}
+
+.color-button:hover {
+    border: 3px double black;
+    border-width: 5px;
+    outline: 2px solid black;
 }
 
 [hidden] {
