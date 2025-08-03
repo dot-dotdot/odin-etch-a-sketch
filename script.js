@@ -140,8 +140,6 @@ function setColor(element, color) {
     element.style.backgroundColor = color;
 }
 
-// TODO: color picker for default draw mode - a popup panel with 16 colors,
-// accessible via a pallette button (on the panel, after the slider).
 function fillPalette() {
     for (let i = 0; i < colors.length; i++) {
         const colorButton = document.createElement("button");

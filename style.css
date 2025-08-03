@@ -182,9 +182,9 @@ label {
     width: 190px;
     justify-content: center;
     flex: none;
-    position: fixed;
-    top: 50px;
-    left: 100px;
+    position: relative;
+    top: -215px;
+    left: 450px;
     border: 3px solid black;
     border-radius: 16px;
     padding: 10px;
@@ -199,9 +199,9 @@ label {
 }
 
 .color-button:hover {
-    border: 3px double black;
+    border: 3px double white;
     border-width: 5px;
-    outline: 2px solid black;
+    outline: 3px solid black;
 }
 
 [hidden] {
