@@ -8,8 +8,6 @@ let sideLength = 16;
 let cellsTotal = sideLength * sideLength
 let currentMode = DEFAULT;
 let currentColor = "#000000";
-let eraseOn = false;
-let randomOn = false;
 
 const gridContainer = document.querySelector(".grid-container");
 const clearButton = document.querySelector(".clear-button");

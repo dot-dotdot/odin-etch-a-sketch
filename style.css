@@ -71,12 +71,13 @@ h1 {
     display: flex;
     flex: none;
     align-items: center;
-    width: 400px;
+    width: 320px;
     padding: 10px 0;
     gap: 6px;
 }
 
-.buttons button {
+.buttons button,
+.button {
     font-family: "Silkscreen", sans-serif;
     font-size: 16px;
     outline: 3px solid black;
@@ -109,6 +110,10 @@ h1 {
 
 .button:hover {
     background-color: #d3d3d3;
+}
+
+.palette {
+    margin-left: 12px;
 }
 
 .mode-on {
