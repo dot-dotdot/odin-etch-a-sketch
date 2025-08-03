@@ -112,7 +112,7 @@ h1 {
     background-color: #d3d3d3;
 }
 
-.palette {
+.palette-button {
     margin-left: 12px;
 }
 
@@ -173,4 +173,19 @@ label {
     height: 14px;
     background: black;
     cursor: pointer;
+}
+
+.palette {
+    display: flex;
+    flex-wrap: wrap;
+    position: fixed;
+    top: 50px;
+    left: 100px;
+    border: 1px solid black;
+    padding: 10px;
+    z-index: 1000;
+}
+
+[hidden] {
+    display: none !important;
 }

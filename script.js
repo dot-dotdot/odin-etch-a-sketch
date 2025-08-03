@@ -7,9 +7,16 @@ const RANDOM= 3;
 let sideLength = 16;
 let cellsTotal = sideLength * sideLength
 let currentMode = DEFAULT;
-let currentColor = "#000000";
+let colors = [
+    "#000000", "#0000AA", "#00AA00", "#00AAAA", 
+    "#AA0000", "#AA00AA", "#AA5500", "#98183c", 
+    "#6a5fa0", "#edb329", "#f7e26c", "#e98472",
+    "#55FF55", "#e76d14", "#7cdbcf", "#b2a283",
+];
+let currentColor = colors[0];
 
 const gridContainer = document.querySelector(".grid-container");
+const palette = document.querySelector(".palette");
 const clearButton = document.querySelector(".clear-button");
 const drawButton = document.querySelector(".draw-button");
 const eraseButton = document.querySelector(".erase-button");
@@ -18,6 +25,7 @@ const gridSizeSlider = document.querySelector(".slider");
 
 fillGrid(sideLength);
 drawButton.classList.add("mode-on"); 
+createPallete();
 
 gridContainer.addEventListener("mouseover", processEvent);
 clearButton.addEventListener("click", () => resetGrid(gridContainer));
@@ -126,3 +134,13 @@ function setColor(element, color) {
 
 // TODO: color picker for default draw mode - a popup panel with 16 colors,
 // accessible via a pallette button (on the panel, after the slider).
+const paletteButton = document.querySelector(".palette-button");
+paletteButton.addEventListener("click", () => palette.toggleAttribute("hidden"));
+
+function createPallete() {
+    for (let i = 0; i < colors.length; i++) {
+        const colorButton = document.createElement("button");
+        colorButton.style.backgroundColor = colors[i];
+        palette.appendChild(colorButton);
+    }
+}
