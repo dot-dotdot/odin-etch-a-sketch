@@ -73,7 +73,7 @@ function handleMouseoverErase(event) {
 function handleMouseoverRandom(event) {
     if (event.target.dataset.cellcolor !== undefined) {
         let randomColor = `rgb(${random(255)} ${random(255)} ${random(255)})`;
-        event.target.style.opacity = random(100) + "%";
+        event.target.style.opacity = random(90) + 10 + "%";
         setColor(event.target, randomColor);
     }
 }
